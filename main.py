@@ -26,13 +26,26 @@ class CompletionApp(Gtk.Window):
         self.add(self.entry)
         self.connect("destroy", Gtk.main_quit)
         self.entry.connect("changed", self.on_open_clicked)
-        self.fullscreen()
         self.show_all()
-        Gtk.main()
 
-    def on_open_clicked(x,y):
+
+    def on_open_clicked(foo,bar):
         Gtk.main_quit()
+
+def fullscreen_at_monitor(window, n):
+    display = Gdk.Display.get_default()
+    monitor = Gdk.Display.get_monitor(display, n)
+    geometry = monitor.get_geometry()
+    x = geometry.x
+    y = geometry.y
+    window.move(x,y)
+    window.fullscreen()
+
 
 if __name__ == '__main__':
     win = CompletionApp()
-    # win.fullscreen()
+    fullscreen_at_monitor(win, 2)
+    win2 = CompletionApp()
+    fullscreen_at_monitor(win2, 1)
+
+    Gtk.main()
