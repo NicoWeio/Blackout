@@ -8,6 +8,7 @@ class BlackoutApp(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self)
 
+        self.set_title("Blackout")
         screen = Gdk.Screen.get_default()
         provider = Gtk.CssProvider()
         style_context = Gtk.StyleContext()
